@@ -39,6 +39,7 @@ function ffprobe (target, config = {}) {
   const args = [
     '-show_streams',
     '-show_format',
+    '-show_frames',
     '-print_format',
     'json',
     target
