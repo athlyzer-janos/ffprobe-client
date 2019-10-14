@@ -36,10 +36,11 @@ function ffprobeExecFile (path, args) {
  */
 function ffprobe (target, config = {}) {
   const path = config.path || process.env.FFPROBE_PATH || 'ffprobe'
+  console.log("start here");
   const args = [
+    '-show_frames',
     '-show_streams',
     '-show_format',
-    '-show_frames',
     '-print_format',
     'json',
     target
