@@ -11,8 +11,9 @@ const { execFile } = require('child_process')
  */
 function ffprobeExecFile (path, args) {
   return new Promise((resolve, reject) => {
-    execFile(path, args, (err, stdout, stderr) => {
+    execFile(path,args,(err, stdout, stderr) => {
       if (err) {
+        console.log("err ja");
         if (err.code === 'ENOENT') {
           reject(err)
         } else {
@@ -20,7 +21,7 @@ function ffprobeExecFile (path, args) {
           reject(ffprobeErr)
         }
       } else {
-        resolve(JSON.parse(stdout))
+        resolve(stdout)
       }
     })
   })
@@ -34,18 +35,20 @@ function ffprobeExecFile (path, args) {
  * @param   {String} [config.path='ffprobe'] Path of the ffprobe binary
  * @returns {Promise<Object>} Promise that resolves to the ffprobe JSON output
  */
-function ffprobe (target, config = {}) {
+function ffprobe (target, config = {}, args) {
   const path = config.path || process.env.FFPROBE_PATH || 'ffprobe'
-  console.log("start here");
-  const args = [
-    '-show_streams',
-    '-show_format',
-    '-print_format',
-    'json',
-    target
-  ]
+  if(!args){
+    args = [
+      '-show_streams',
+      '-show_format',
+      '-print_format',
+      'json'
+    ];
+  }
+  args.push(target);
+  console.log("args",args);
 
   return ffprobeExecFile(path, args)
 }
 
-module.exports = ffprobe
+module.exports = ffprobe;
