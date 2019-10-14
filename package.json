@@ -1,10 +1,10 @@
 {
   "name": "@athlyzer/ffprobe-client",
   "description": "A zero-dependency, promise-based Node.js API for ffprobe",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "author": "Philip Scott <pscott@zeptohost.com>",
+  "author": "Philip Scott <pscott@zeptohost.com>, updated by Janos Koschwitz janos.koschwitz@athlyzer.com",
   "keywords": [
     "ffmpeg",
     "ffprobe",
